@@ -39,8 +39,8 @@ for i in range(szam):
                 random_sor = random.choice(helyek[0][1])
                 if siker == False:
                     if random_oszlop == "A" or random_oszlop == "F":
+                        aktualis_ules = random_oszlop + random_sor
                         if aktualis_ules not in foglalt:
-                            aktualis_ules = random_oszlop + random_sor
                             foglalt.append(aktualis_ules)
                             foglalas.append(aktualis_ules)
                             siker = True

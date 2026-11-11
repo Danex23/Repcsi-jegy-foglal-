@@ -5,6 +5,7 @@ helyek =[[["A","B","C","D","E","F"],["5","6","7","8","9","10","11"]],
 foglalt  = []
 busfoglalt = []
 foglalas = []
+nevek = []
 #Osztály szerinti szűrés
 #66 hely van
 def utasok ():
@@ -23,13 +24,15 @@ aktualis_oszlop = None
 random_oszlop = None
 random_sor = None
 tipus = input("Random jegy vagy választasz?(r ha igen): ")
-ablak = input("Szeretnél ablak mellet ülni? +100$-ért?(i/n): ")
+if tipus == "R" or tipus == "r":
+    ablak = input("Szeretnél ablak mellet ülni? +100$-ért?(i/n): ")
 szam = int(input("Hány főre szeretne foglalni? "))
-if szam >= 16:
+if szam >= 11:
     print("Nem foglalhatsz többet mint 10!")
     szam  = 10
 utasok()
 for i in range(szam):
+    nevek.append(input(f"Kinek lesz {i+1}. jegy foglalva?: "))
     if tipus == "R" or tipus == "r":
         if ablak == "i" or ablak == "I":
             siker = False
@@ -44,7 +47,7 @@ for i in range(szam):
                             foglalas.append(aktualis_ules)
                             siker = True
             if siker == False:
-                print("Nem sikerült foglalni keresünk máshol!")   
+                print("Nem sikerült foglalni az ablak mellé, keresünk máshol!")   
                 while True:
                     random_oszlop = random.choice(helyek[0][0])
                     random_sor = random.choice(helyek[0][1])
@@ -63,11 +66,11 @@ for i in range(szam):
                     foglalas.append(aktualis_ules)
                     break
     else:
-        osztály = input("Milyen osztályon szeretnél utazni?: ")
+        osztály = input("Milyen osztályon szeretnél utazni?(Economy/buisness): ")
         if osztály == "Economy" or osztály == "economy" or osztály == "E" or osztály == "e":
             aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
-            foglalt = False
-            while foglalt == False:
+            siker = False
+            while siker == False:
                 aktualis_sor = input("Meylik sorban szeretne ülni? (Túrista osztályon van! Csak 5. és utána lévő sorokat választhat!)" )
                 num = int(aktualis_sor)
                 if num >= 5:
@@ -75,17 +78,17 @@ for i in range(szam):
                     if aktualis_ules not in foglalt:
                         foglalt.append(aktualis_ules)
                         foglalas.append(aktualis_ules)
-                        foglalt = True
+                        siker = True
                     else:
                         print("Ez a hely foglalt")
-                        foglalt = False
+                        siker = False
                         kerdes = input("Szeretnél másik sort választani?:(I/n) ")
                         if kerdes == "I" or kerdes == "i":
                             aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
         if osztály == "Busniess" or osztály == "busniess" or osztály == "B" or osztály == "b":
             aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
-            foglalt = False
-            while foglalt == False:
+            siker = False
+            while siker == False:
                 aktualis_sor = input("Meylik sorban szeretne ülni? (Busniess osztályon van! 1-4 ig választhat)" )
                 num = int(aktualis_sor)
                 if num < 5:
@@ -93,15 +96,17 @@ for i in range(szam):
                     if aktualis_ules not in foglalt:
                         foglalt.append(aktualis_ules)
                         foglalas.append(aktualis_ules)
-                        foglalt = True
+                        siker = True
                     else:
                         print("Ez a hely foglalt")
-                        foglalt = False
+                        siker = False
                         kerdes = input("Szeretnél másik sort választani?:(I/n) ")
                         if kerdes == "I" or kerdes == "i":
                             aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
 jegyek = ""
 for i in range(len(foglalas)):
+    jegyek += nevek[i]
+    jegyek += " "
     jegyek += foglalas[i]
     if i < len(foglalas)-1:
         jegyek += " "

@@ -22,7 +22,6 @@ aktualis_sor = None
 aktualis_oszlop = None
 random_oszlop = None
 random_sor = None
-
 tipus = input("Random jegy vagy választasz?(r ha igen): ")
 ablak = input("Szeretnél ablak mellet ülni? +100$-ért?(i/n): ")
 szam = int(input("Hány főre szeretne foglalni? "))
@@ -77,13 +76,25 @@ for i in range(szam):
                         break
         if osztály == "Busniess" or osztály == "busniess" or osztály == "B" or osztály == "b":
             aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
-            while True:
-                aktualis_sor = input("Meylik sorban szeretne ülni? (Túrista osztályon van! 1-4 ig választhat)" )
-                if aktualis_sor < 5:
+            foglalt = False
+            while foglalt == False:
+                aktualis_sor = input("Meylik sorban szeretne ülni? (Busniess osztályon van! 1-4 ig választhat)" )
+                num = int(aktualis_sor)
+                if num < 5:
                     aktualis_ules = aktualis_oszlop + aktualis_sor
                     if aktualis_ules not in foglalt:
                         foglalt.append(aktualis_ules)
                         foglalas.append(aktualis_ules)
-                        break
-#test
-print(foglalas)
+                        foglalt = True
+                    else:
+                        print("Ez a hely foglalt")
+                        foglalt = False
+                        kerdes = input("Szeretnél másik sort választani?:(I/n) ")
+                        if kerdes == "I" or kerdes == "i":
+                            aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
+jegyek = ""
+for i in range(len(foglalas)):
+    jegyek += foglalas[i]
+    if i < len(foglalas)-1:
+        jegyek += " "
+print(f"Ez hely(ek)-re foglaltál jegyet: {jegyek}")

@@ -66,14 +66,22 @@ for i in range(szam):
         osztály = input("Milyen osztályon szeretnél utazni?: ")
         if osztály == "Economy" or osztály == "economy" or osztály == "E" or osztály == "e":
             aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
-            while True:
+            foglalt = False
+            while foglalt == False:
                 aktualis_sor = input("Meylik sorban szeretne ülni? (Túrista osztályon van! Csak 5. és utána lévő sorokat választhat!)" )
-                if aktualis_sor >= 5:
+                num = int(aktualis_sor)
+                if num >= 5:
                     aktualis_ules = aktualis_oszlop + aktualis_sor
                     if aktualis_ules not in foglalt:
                         foglalt.append(aktualis_ules)
                         foglalas.append(aktualis_ules)
-                        break
+                        foglalt = True
+                    else:
+                        print("Ez a hely foglalt")
+                        foglalt = False
+                        kerdes = input("Szeretnél másik sort választani?:(I/n) ")
+                        if kerdes == "I" or kerdes == "i":
+                            aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
         if osztály == "Busniess" or osztály == "busniess" or osztály == "B" or osztály == "b":
             aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
             foglalt = False

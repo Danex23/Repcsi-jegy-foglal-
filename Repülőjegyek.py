@@ -68,7 +68,7 @@ for i in range(szam):
     else:
         osztály = input("Milyen osztályon szeretnél utazni?(Economy/buisness): ")
         if osztály == "Economy" or osztály == "economy" or osztály == "E" or osztály == "e":
-            aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
+            aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ").upper()
             siker = False
             while siker == False:
                 aktualis_sor = input("Meylik sorban szeretne ülni? (Túrista osztályon van! Csak 5. és utána lévő sorokat választhat!)" )
@@ -84,7 +84,7 @@ for i in range(szam):
                         siker = False
                         kerdes = input("Szeretnél másik sort választani?:(I/n) ")
                         if kerdes == "I" or kerdes == "i":
-                            aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
+                            aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ").upper()
         if osztály == "Busniess" or osztály == "busniess" or osztály == "B" or osztály == "b":
             aktualis_oszlop = input("Melyik oszlopban szeretne ülni? (A-F) ")
             siker = False
